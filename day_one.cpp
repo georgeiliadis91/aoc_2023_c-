@@ -34,6 +34,6 @@ int main() {
 
     }
     cout << "The result is:" << sum << endl;
-    return sum;
+    return 0;
 }
 
