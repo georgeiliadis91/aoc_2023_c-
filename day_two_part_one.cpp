@@ -69,10 +69,6 @@ int main() {
                 std::string trimmed_str = trim(game_set);
                 std::vector<std::string> game_set_vec= split_string(trimmed_str, ' ');
 
-                cout << "Total String:" << trimmed_str <<endl;
-                cout << "Number:" << game_set_vec[0] <<endl;
-                cout << "string:" << game_set_vec[1] <<endl;
-            
                 if(data_map[game_set_vec[1]] < std::stoi(game_set_vec[0])){
                     is_game_valid = false;
                 }
