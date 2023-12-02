@@ -6,19 +6,19 @@
 
 using namespace std;
 
-std::ifstream infile("input.txt");
+ifstream infile("input.txt");
 
 bool is_number(char c) {
     return c >= '0' && c <= '9';
 }
 
 int main() {
-    std::string line;
+    string line;
     int sum = 0;
-    while (std::getline(infile, line))
+
+    while (getline(infile, line))
     {
-        std::istringstream iss(line);
-        std::vector< char > arr;
+        vector< char > arr;
 
         for (int i = 0; i < line.length(); i++) {
             if (is_number(line[i])) { arr.push_back(line[i]);}
@@ -28,7 +28,7 @@ int main() {
             string str_num;
             str_num[0] = arr.front();
             str_num[1] = arr.back();
-            int number = std::stoi(str_num);
+            int number = stoi(str_num);
             sum += number;
         }
 
