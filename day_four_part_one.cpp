@@ -32,6 +32,7 @@ void parse_numbers(string card_numbers,set<int>& set_data){
         if(card_numbers[i] != ' '){
              char_vec.push_back(card_numbers[i]);
 
+             //Last element has nothing after it, so if we are here do not skip it add it.
              if( i == card_numbers.length() - 1){
                 string num_str(char_vec.begin(), char_vec.end());
                 set_data.insert(stoi(num_str));
