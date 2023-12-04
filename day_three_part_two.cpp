@@ -5,6 +5,7 @@
 #include <vector>
 #include <optional>
 #include <unordered_map>
+#include <map>
 
 using namespace std;
 
@@ -79,9 +80,11 @@ int main() {
     v_len = grid_vec.size();
 
     vector<char> num_candidate;
-    unordered_map<string,vector<string> > star_hash_map;
+    map<string,vector<string> > star_hash_map;
+
     for(int i = 0; i < v_len ; i++){
         for(int j = 0; j < h_len ; j++){
+
             const bool is_num = is_number(grid_vec[i][j]);
             if(is_num){
                 num_candidate.push_back(grid_vec[i][j]);
@@ -106,11 +109,10 @@ int main() {
                     s_index = j -1 - num_candidate.size() + 1;
                 }
 
-
                 string res = check_if_valid_entry(grid_vec, s_index, e_index, i, v_len, h_len);
 
                 if(res != "NOT_FOUND"){
-                        star_hash_map[res].push_back(str);
+                    star_hash_map[res].push_back(str);
                 }
 
                 num_candidate.clear();
@@ -123,12 +125,15 @@ int main() {
         const vector<string>& values = pair.second;
 
         int amount = 1;
-        if(values.size() == 2){
+        if(values.size() > 1){
+            cout<< " The key: " << key;
             for (string value : values) {
+                cout<< " val: " << value;
                 amount *= stoi(value);
             }
+            cout <<endl;
+            sum+=amount;
         }
-        sum+=amount;
     }
 
     cout << sum << endl;
