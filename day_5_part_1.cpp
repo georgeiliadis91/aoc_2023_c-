@@ -121,7 +121,7 @@ int main()
     vector<long> seed_cost;
     for (auto const &seed : seed_vec)
     {
-        cout << "The seed val:" << seed << endl;
+        long x = seed;
         for (auto const &elem : elem_map)
         {
             cout << "Map index: " << elem.first << endl;
@@ -129,18 +129,27 @@ int main()
 
             for (auto const &row : map_data)
             {
-                if (seed >= row[1] && seed <= row[1] + row[2])
+                if (x >= row[1] && x <= row[1] + row[2] - 1)
                 {
                     cout << "bingo!" << endl;
+                    x = row[0] + (x - row[1]);
+                    break;
                 }
-
-                // for(auto const& col : row){
-                //     cout << col << " ";
-                // }
-                cout << endl;
             }
         }
+        seed_cost.push_back(x);
     }
+
+    long goal = 9223372036854775807;
+    for (auto const &seed : seed_cost)
+    {
+        if (seed < goal)
+        {
+            goal = seed;
+        }
+    }
+
+    cout << "Goal: " << goal << endl;
 
     return 0;
 }
