@@ -128,6 +128,7 @@ int main()
     {
         map<char, int> hand_types;
 
+        // Create hand key map
         for (int i = 0; i < hand.first.length(); i++)
         {
             if (hand_types.count(hand.first[i]) > 0)
@@ -136,11 +137,15 @@ int main()
             }
             else
             {
-                hand_types[hand.first[i]] += 1;
+                hand_types[hand.first[i]] = 1;
             }
         }
 
-        int amount_of_j = hand_types.count('0');
+        int amount_of_j = 0;
+        if (hand_types.count('0') > 0)
+        {
+            amount_of_j = hand_types['0'];
+        }
         if (amount_of_j <= 0 || amount_of_j == 5)
         {
             int key = hand_sort(hand_types);
@@ -151,9 +156,17 @@ int main()
             map<char, int> tmp_hand_types;
             int amount = 0;
             char max_key;
+
             for (auto const &item : hand_types)
             {
                 if (item.first != '0' && item.second > amount)
+                {
+                    amount = item.second;
+                    max_key = item.first;
+                    continue;
+                }
+
+                if (item.first != '0' && item.second == amount && item.first > max_key)
                 {
                     amount = item.second;
                     max_key = item.first;
@@ -162,11 +175,11 @@ int main()
 
             for (auto const &item : hand_types)
             {
-                if (item.first != 'J')
+                if (item.first != '0')
                 {
                     if (item.first == max_key)
                     {
-                        tmp_hand_types[item.first] = item.second + amount;
+                        tmp_hand_types[item.first] = item.second + amount_of_j;
                     }
                     else
                     {
