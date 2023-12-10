@@ -79,7 +79,7 @@ int main()
             }
             else
             {
-                hand_types[hand.first[i]] += 1;
+                hand_types[hand.first[i]] = 1;
             }
         }
 
